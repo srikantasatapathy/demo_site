@@ -1,20 +1,104 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <title>Portfolio - Srikant Satapathy</title>
-    <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <title>Form to PDF</title>
+    <script src="https://unpkg.com/jspdf@1.5.3/dist/jspdf.min.js"></script>
 </head>
 
 <body>
-    <div>
-        <h1>Hello welcome to dummy site </h1>
-    </div>
-    <div class="col-lg-4">
-        <img src="assets/img/profile-img.jpg" class="img-fluid" alt="">
-      </div>
+    <form id="myForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"><br><br>
+
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address"><br><br>
+
+        <label for="phone">Phone Number:</label>
+        <input type="text" id="phone" name="phone"><br><br>
+
+        <button type="button" id="nextBtn">Next</button>
+        <button type="button" id="submitBtn">Submit</button>
+    </form>
+    <script>
+        const dataObjects = [
+            { name: 'demo1', address: 'bbsr', phone: '+1 (555) 555-5555' },
+            { name: 'demo2', address: 'bbsr', phone: '+1 (555) 555-5555' },
+            { name: 'demo3', address: 'bbsr', phone: '+1 (555) 555-5555' },
+            { name: 'demo4', address: 'bbsr', phone: '+1 (555) 555-5555' },
+            { name: 'demo5', address: 'bbsr', phone: '+1 (555) 555-5555' },
+            { name: 'demo6', address: 'bbsr', phone: '+1 (555) 555-5555' },
+            { name: 'demo7', address: 'bbsr', phone: '+1 (555) 555-5555' },
+            { name: 'demo8', address: 'bbsr', phone: '+1 (555) 555-5555' },
+            { name: 'demo9', address: 'bbsr', phone: '+1 (555) 555-5555' },
+            { name: 'demo10', address: 'bbsr', phone: '+1 (555) 555-5555' },
+        ];
+
+        document.getElementById('nextBtn').addEventListener('click', function () {
+            const name = document.getElementById('name').value;
+            const address = document.getElementById('address').value;
+            const phone = document.getElementById('phone').value;
+
+            // Create an object and add the data
+            const formData = {
+                name: name,
+                address: address,
+                phone: phone,
+            };
+
+            dataObjects.push(formData);
+
+            // Clear the form fields for the next entry
+            document.getElementById('name').value = '';
+            document.getElementById('address').value = '';
+            document.getElementById('phone').value = '';
+        });
+
+        document.getElementById('submitBtn').addEventListener('click', function () {
+            const name = document.getElementById('name').value;
+            const address = document.getElementById('address').value;
+            const phone = document.getElementById('phone').value;
+
+            const formData = {
+                name: name,
+                address: address,
+                phone: phone,
+            };
+            dataObjects.push(formData);
+            //convert to pdf
+            if (dataObjects.length > 0) {
+                var pdf = new jsPDF({
+                    orientation: 'p',
+                    unit: 'mm',
+                    format: [210, 297], // Default A4 size
+                    putOnlyUsedFonts: true,
+                    compress: true,
+                });
+
+                let yOffset = 20;
+                dataObjects.forEach((data, index) => {
+                    const contentHeight = 40; // Height of the content for each entry
+                    if (yOffset + contentHeight > pdf.internal.pageSize.height) {
+                        // If content doesn't fit within the current page, add a new page
+                        pdf.addPage();
+                        yOffset = 20;
+                    }
+
+                    // Set the font size and style
+                    pdf.setFontSize(5); // You can adjust the font size as needed
+                    pdf.setFont("helvetica", "normal");
+
+                    pdf.text(10, yOffset, `Entry ${index + 1}:`);
+                    pdf.text(20, yOffset + 10, `Name: ${data.name}`);
+                    pdf.text(20, yOffset + 20, `Address: ${data.address}`);
+                    pdf.text(20, yOffset + 30, `Phone: ${data.phone}`);
+                    yOffset += contentHeight;
+                });
+
+                pdf.save('output.pdf');
+            }
+        });
+    </script>
 </body>
 
 </html>
