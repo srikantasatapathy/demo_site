@@ -18,8 +18,12 @@
         <input type="text" id="phone" name="phone"><br><br>
 
         <button type="button" id="nextBtn">Next</button>
-        <button type="button" id="submitBtn">Submit</button>
+        <button type="button" id="submitBtn">Submit and download pdf</button>
+        <button type="button" id="showBtn">Show PDF</button>
+        <button type="button" id="closeBtn">Close PDF</button>
     </form>
+     <!-- Add an iframe to show the PDF preview -->
+     <iframe id="pdfPreview" style="width: 80%; height: 700px;display: none;"></iframe>
     <script>
         const dataObjects = [
             { name: 'demo1', address: 'bbsr', phone: '+1 (555) 555-5555' },
@@ -94,9 +98,21 @@
                     pdf.text(20, yOffset + 30, `Phone: ${data.phone}`);
                     yOffset += contentHeight;
                 });
-
+                // Generate a data URL for the PDF content
+                const pdfDataUri = pdf.output('datauristring');
                 pdf.save('output.pdf');
             }
+        });
+        // Show PDF button
+        document.getElementById('showBtn').addEventListener('click', function () {
+            const pdfPreview = document.getElementById('pdfPreview');
+            pdfPreview.style.display = 'block';
+        });
+
+        // Close PDF button
+        document.getElementById('closeBtn').addEventListener('click', function () {
+            const pdfPreview = document.getElementById('pdfPreview');
+            pdfPreview.style.display = 'none';
         });
     </script>
 </body>
