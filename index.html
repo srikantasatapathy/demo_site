@@ -7,60 +7,50 @@
 </head>
 
 <body>
-  <!-- <form id="myForm">
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name"><br><br>
-      <label for="address">Address:</label>
-      <input type="text" id="address" name="address"><br><br>
-
-      <label for="phone">Phone Number:</label>
-      <input type="text" id="phone" name="phone"><br><br>
-
-      <button type="button" id="nextBtn">Next</button>
-      <button type="button" id="submitBtn">Submit and download pdf</button>
-      <button type="button" id="showBtn">Show PDF</button>
-      <button type="button" id="closeBtn">Close PDF</button>
-  </form> -->
-  <!-- Add an iframe to show the PDF preview -->
-  <!-- <iframe id="pdfPreview" style="width: 80%; height: 700px;"></iframe> -->
   <div class="container">
     <div class="half red">
       <div class="container1">
         <h4>O/o The EIC(civil), Odisha , BBSR</h4>
         <form>
           <label for="fname">Name</label>
-          <input type="text" id="name" placeholder="Enter Name">
+          <input type="text" id="name" required placeholder="Enter Name">
           <label for="fname">Father's name</label>
-          <input type="text" id="fname" placeholder="Enter Father's name">
+          <input type="text" id="fname" required placeholder="Enter Father's name">
           <label for="fno">File no</label>
-          <input type="text" id="fileno" placeholder="Enter File no">
+          <input type="text" id="fileno" required placeholder="Enter File no">
           <label for="at">At</label>
-          <input type="text" id="at" placeholder="Enter At">
+          <input type="text" id="at" required placeholder="Enter At">
           <label for="post">Post</label>
-          <input type="text" id="post" placeholder="Enter Post">
+          <input type="text" id="post" required placeholder="Enter Post">
           <label for="police station">Police station</label>
-          <input type="text" id="police_station" placeholder="Enter Police station">
+          <input type="text" id="police_station" required placeholder="Enter Police station">
           <label for="dist">Dist</label>
-          <input type="text" id="dist" placeholder="Enter Dist">
+          <input type="text" id="dist" required placeholder="Enter Dist">
           <label for="pin">Pin</label>
-          <input type="text" id="pin" placeholder="Enter Pin">
+          <input type="number" id="pin" required placeholder="Enter Pin">
           <label for="contact_number">Contact Number</label>
-          <input type="text" id="contact_Number" placeholder="Enter Contact Number">
-          <button type="button" id="nextBtn">Next</button>
-          <button type="button" id="submitBtn">Submit and download pdf</button>
-          <button type="button" id="showPdfBtn">Show PDF preview</button>
+          <input type="number" id="contact_Number" required placeholder="Enter Contact Number">
+          <button type="submit" id="nextBtn" sty>Next</button>
+          <button type="submit" id="submitBtn">Submit and preview pdf</button>
           <button type="button" id="closePdfBtn">Close PDF preview</button>
         </form>
       </div>
     </div>
     <div class="half blue">
-      <iframe id="pdfPreview" style="width: 100%; height: 95vh; display: none;"></iframe>
+      <h4 id="pdf_msg" style="position: absolute; right: 20%;top: 50%; color: rgb(150, 150, 149);display: block;">Show
+        pdf preview after submit</h5>
+        <iframe id="pdfPreview" style="width: 100%; height: 95vh; display: none;"></iframe>
     </div>
+  </div>
+  <!-- footer -->
+  <div style="background-color: #dbdada;align-items: center; margin-top: 10px;">
+    <h5 style="text-align: center;padding: 5px;">Copyright © 2023 <a
+        href="https://www.linkedin.com/in/srikanta-satapathy-a904511bb"> Srikant Satapathy </a>. All rights reserved.
+    </h5>
   </div>
   <style>
     input[type=text],
-    select,
-    textarea {
+    input[type=number] {
       width: 100%;
       padding: 10px;
       border: 1px solid #ccc;
@@ -78,6 +68,7 @@
       border: none;
       border-radius: 4px;
       cursor: pointer;
+      /* margin-left: 5%; */
     }
 
     #submitBtn:hover {
@@ -87,7 +78,7 @@
     #nextBtn {
       background-color: #0491aa;
       color: white;
-      padding: 12px 20px;
+      padding: 12px 60px;
       border: none;
       border-radius: 4px;
       cursor: pointer;
@@ -130,16 +121,15 @@
       height: 91vh;
     }
 
-    /* ================= */
     body {
       background-color: #f0eaeaea;
+      /* background-color: #aa1704; */
     }
 
     .container {
       display: flex;
       width: 100%;
       height: 95vh;
-      /* Adjust the height as needed */
     }
 
     /* .red{
@@ -156,20 +146,7 @@
     } */
   </style>
   <script>
-    const dataObjects = [
-      { name: 'demo1', fname: 'bbsr', fileno: '1', at: 'bbsr', post: 'bbsr', police_station: 'bbsr', dist: 'bbsr', pin: '4566', contact_Number: '+1 (555) 555-5555' },
-      { name: 'demo1', fname: 'bbsr', fileno: '1', at: 'bbsr', post: 'bbsr', police_station: 'bbsr', dist: 'bbsr', pin: '4566', contact_Number: '+1 (555) 555-5555' },
-      { name: 'demo1', fname: 'bbsr', fileno: '1', at: 'bbsr', post: 'bbsr', police_station: 'bbsr', dist: 'bbsr', pin: '4566', contact_Number: '+1 (555) 555-5555' },
-      { name: 'demo1', fname: 'bbsr', fileno: '1', at: 'bbsr', post: 'bbsr', police_station: 'bbsr', dist: 'bbsr', pin: '4566', contact_Number: '+1 (555) 555-5555' },
-      { name: 'demo1', fname: 'bbsr', fileno: '1', at: 'bbsr', post: 'bbsr', police_station: 'bbsr', dist: 'bbsr', pin: '4566', contact_Number: '+1 (555) 555-5555' },
-      { name: 'demo1', fname: 'bbsr', fileno: '1', at: 'bbsr', post: 'bbsr', police_station: 'bbsr', dist: 'bbsr', pin: '4566', contact_Number: '+1 (555) 555-5555' },
-      { name: 'demo1', fname: 'bbsr', fileno: '1', at: 'bbsr', post: 'bbsr', police_station: 'bbsr', dist: 'bbsr', pin: '4566', contact_Number: '+1 (555) 555-5555' },
-      { name: 'demo1', fname: 'bbsr', fileno: '1', at: 'bbsr', post: 'bbsr', police_station: 'bbsr', dist: 'bbsr', pin: '4566', contact_Number: '+1 (555) 555-5555' },
-      { name: 'demo1', fname: 'bbsr', fileno: '1', at: 'bbsr', post: 'bbsr', police_station: 'bbsr', dist: 'bbsr', pin: '4566', contact_Number: '+1 (555) 555-5555' },
-      { name: 'demo1', fname: 'bbsr', fileno: '1', at: 'bbsr', post: 'bbsr', police_station: 'bbsr', dist: 'bbsr', pin: '4566', contact_Number: '+1 (555) 555-5555' },
-      { name: 'demo1', fname: 'bbsr', fileno: '1', at: 'bbsr', post: 'bbsr', police_station: 'bbsr', dist: 'bbsr', pin: '4566', contact_Number: '+1 (555) 555-5555' },
-
-    ];
+    const dataObjects = [];
 
     document.getElementById('nextBtn').addEventListener('click', function () {
       const name = document.getElementById('name').value;
@@ -276,19 +253,17 @@
         const pdfPreview = document.getElementById('pdfPreview');
         pdfPreview.src = pdfDataUri;
         pdfPreview.style.display = 'block';
+        pdf_msg.style.display = 'none';
         // pdf.save('output.pdf');
       }
     });
-    // Show PDF button
-    document.getElementById('showPdfBtn').addEventListener('click', function () {
-      const pdfPreview = document.getElementById('pdfPreview');
-      pdfPreview.style.display = 'block';
-    });
+
 
     // Close PDF button
     document.getElementById('closePdfBtn').addEventListener('click', function () {
       const pdfPreview = document.getElementById('pdfPreview');
       pdfPreview.style.display = 'none';
+      pdf_msg.style.display = 'block';
     });
   </script>
 </body>
