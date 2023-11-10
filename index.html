@@ -11,7 +11,8 @@
     <div class="half red">
       <div class="container1">
         <h4>O/o The EIC(civil), Odisha , BBSR</h4>
-        <form>
+        <p id="msg" style="color: red;"></p>
+        <div>
           <label for="fname">Name</label>
           <input type="text" id="name" required placeholder="Enter Name">
           <label for="fname">Father's name</label>
@@ -33,7 +34,7 @@
           <button type="submit" id="nextBtn" sty>Next</button>
           <button type="submit" id="submitBtn">Submit and preview pdf</button>
           <button type="button" id="closePdfBtn">Close PDF preview</button>
-        </form>
+        </div>
       </div>
     </div>
     <div class="half blue">
@@ -147,7 +148,6 @@
   </style>
   <script>
     const dataObjects = [];
-
     document.getElementById('nextBtn').addEventListener('click', function () {
       const name = document.getElementById('name').value;
       const fname = document.getElementById('fname').value;
@@ -158,7 +158,43 @@
       const dist = document.getElementById('dist').value;
       const pin = document.getElementById('pin').value;
       const contact_Number = document.getElementById('contact_Number').value;
-
+      // check null field
+      if (name == '') {
+        document.getElementById('msg').innerHTML = 'Please Enter Name';
+        return false;
+      }
+      if (fname == '') {
+        document.getElementById('msg').innerHTML = 'Please Enter Father Name';
+        return false;
+      }
+      if (fileno == '') {
+        document.getElementById('msg').innerHTML = 'Please Enter File no';
+        return false;
+      }
+      if (at == '') {
+        document.getElementById('msg').innerHTML = 'Please Enter At';
+        return false;
+      }
+      if (post == '') {
+        document.getElementById('msg').innerHTML = 'Please Enter Post';
+        return false;
+      }
+      if (police_station == '') {
+        document.getElementById('msg').innerHTML = 'Please Enter Police Station';
+        return false;
+      }
+      if (dist == '') {
+        document.getElementById('msg').innerHTML = 'Please Enter Dist';
+        return false;
+      }
+      if (pin == '') {
+        document.getElementById('msg').innerHTML = 'Please Enter Pin';
+        return false;
+      }
+      if (contact_Number == '') {
+        document.getElementById('msg').innerHTML = 'Please Enter Contact Number';
+        return false;
+      }
       // Create an object and add the data
       const formData = {
         name: name,
@@ -184,6 +220,7 @@
       document.getElementById('dist').value = '';
       document.getElementById('pin').value = '';
       document.getElementById('contact_Number').value = '';
+      document.getElementById("msg").style.display = "none";
     });
 
     document.getElementById('submitBtn').addEventListener('click', function () {
@@ -197,6 +234,43 @@
       const pin = document.getElementById('pin').value;
       const contact_Number = document.getElementById('contact_Number').value;
 
+      // check null field
+      if (name == '') {
+        document.getElementById('msg').innerHTML = 'Please Enter Name';
+        return false;
+      }
+      if (fname == '') {
+        document.getElementById('msg').innerHTML = 'Please Enter Father Name';
+        return false;
+      }
+      if (fileno == '') {
+        document.getElementById('msg').innerHTML = 'Please Enter File no';
+        return false;
+      }
+      if (at == '') {
+        document.getElementById('msg').innerHTML = 'Please Enter At';
+        return false;
+      }
+      if (post == '') {
+        document.getElementById('msg').innerHTML = 'Please Enter Post';
+        return false;
+      }
+      if (police_station == '') {
+        document.getElementById('msg').innerHTML = 'Please Enter Police Station';
+        return false;
+      }
+      if (dist == '') {
+        document.getElementById('msg').innerHTML = 'Please Enter Dist';
+        return false;
+      }
+      if (pin == '') {
+        document.getElementById('msg').innerHTML = 'Please Enter Pin';
+        return false;
+      }
+      if (contact_Number == '') {
+        document.getElementById('msg').innerHTML = 'Please Enter Contact Number';
+        return false;
+      }
       // Create an object and add the data
       const formData = {
         name: name,
@@ -254,6 +328,7 @@
         pdfPreview.src = pdfDataUri;
         pdfPreview.style.display = 'block';
         pdf_msg.style.display = 'none';
+        document.getElementById("msg").style.display = "none";
         // pdf.save('output.pdf');
       }
     });
